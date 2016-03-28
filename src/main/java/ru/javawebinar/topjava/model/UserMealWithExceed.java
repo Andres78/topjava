@@ -22,3 +22,7 @@ public class UserMealWithExceed {
         this.exceed = exceed;
     }
 }
+
+/*
+Prepare to HW0
+ */
