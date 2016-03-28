@@ -9,8 +9,8 @@
     <jmxConfigurator/>
 
     <appender name="file" class="ch.qos.logback.core.FileAppender">
-        <file>${TOPJAVA_ROOT}/log/topjava.log</file>
-
+        <file>/home/herrero/log/topjava.log</file>
+        <!--${TOPJAVA_ROOT}/log/-->
         <encoder>
             <charset>UTF-8</charset>
             <pattern>%date %-5level %logger{0} [%file:%line] %msg%n</pattern>

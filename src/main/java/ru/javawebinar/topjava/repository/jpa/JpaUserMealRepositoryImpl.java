@@ -1,9 +1,13 @@
 package ru.javawebinar.topjava.repository.jpa;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.model.UserMeal;
 import ru.javawebinar.topjava.repository.UserMealRepository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -13,7 +17,11 @@ import java.util.List;
  */
 
 @Repository
+@Transactional(readOnly = true)
 public class JpaUserMealRepositoryImpl implements UserMealRepository {
+
+    @PersistenceContext
+    private EntityManager em;
 
     @Override
     public UserMeal save(UserMeal userMeal, int userId) {
@@ -32,11 +40,12 @@ public class JpaUserMealRepositoryImpl implements UserMealRepository {
 
     @Override
     public List<UserMeal> getAll(int userId) {
-        return null;
+        return em.createNamedQuery(UserMeal.ALL_SORTED, UserMeal.class).getResultList();
     }
 
     @Override
     public List<UserMeal> getBetween(LocalDateTime startDate, LocalDateTime endDate, int userId) {
-        return null;
+        return em.createNamedQuery(UserMeal.ALL_SORTED, UserMeal.class).getResultList();
+
     }
 }
