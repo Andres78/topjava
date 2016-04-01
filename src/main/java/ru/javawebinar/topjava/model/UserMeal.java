@@ -1,5 +1,7 @@
 package ru.javawebinar.topjava.model;
 
+import ru.javawebinar.topjava.util.LocalDateTimeConverter;
+
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import java.time.LocalDateTime;
@@ -7,32 +9,38 @@ import java.time.LocalDateTime;
 /**
  * GKislin
  * 11.01.2015.
+ * NamedQuery(name = UserMeal.ALL_SORTED, query = "SELECT um FROM UserMeal um"),
+ *         NamedQuery(name = UserMeal.ALL_SORTED, query = "SELECT um FROM UserMeal um WHERE um.user.id=:userId"),
+
  */
 @NamedQueries({
-        @NamedQuery(name = UserMeal.DELETE, query = "DELETE FROM UserMeal um WHERE um.id=:id"),
-        @NamedQuery(name = UserMeal.ALL_SORTED, query = "SELECT um FROM UserMeal um"),
+        @NamedQuery(name = UserMeal.DELETE, query = "DELETE FROM UserMeal um WHERE um.id=:id AND um.user.id=:userId"),
+        @NamedQuery(name = UserMeal.GET_BETWEEN, query = "SELECT um FROM UserMeal um WHERE um.user.id=:userId AND um.dateTime BETWEEN :startDate AND :endDate" ),
+        @NamedQuery(name = UserMeal.ALL_SORTED, query = "SELECT um FROM UserMeal um WHERE um.user.id=:userId ORDER BY um.dateTime DESC"),
 })
 @Entity
-@Table(name="meals")
+@Table(name = "meals")
 public class UserMeal extends BaseEntity {
+    public static final String CREATE = "UserMeal.create";
+    public static final String GET_BETWEEN = "UserMeal.getbetween";
     public static final String DELETE = "UserMeal.delete";
     public static final String ALL_SORTED = "UserMeal.getAllSorted";
-
-    @Column(name = "date_time", columnDefinition = "timestamp")
-    private LocalDateTime dateTime;
-
-    @Column(name = "description")
-    private String description;
 
     @Column(name = "calories")
     @Digits(fraction = 0, integer = 4)
     protected int calories;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
+    @Convert(converter = LocalDateTimeConverter.class)
+    @Column(name = "date_time", nullable = false)
+    private LocalDateTime dateTime;
 
-    @Column (name = "user_id")
-    protected int id;
+    @Column(name = "description")
+    private String description;
+
+//    @Column(name = "user_id")
+    @ManyToOne(fetch = FetchType.LAZY/*, cascade = {CascadeType.MERGE, CascadeType.PERSIST}*/)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     public UserMeal() {
     }
@@ -52,20 +60,20 @@ public class UserMeal extends BaseEntity {
         return dateTime;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public int getCalories() {
-        return calories;
-    }
-
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getCalories() {
+        return calories;
     }
 
     public void setCalories(int calories) {
