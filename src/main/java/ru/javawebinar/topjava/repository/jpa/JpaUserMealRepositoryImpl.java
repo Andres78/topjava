@@ -27,14 +27,24 @@ public class JpaUserMealRepositoryImpl implements UserMealRepository {
     @Override
     public UserMeal save(UserMeal userMeal, int userId) {
         User us_ref = em.getReference(User.class, userId);
-        if ((userMeal.getId() != null) /*&& (userId != us_ref.getId() || userMeal.getUser().getId() != us_ref.getId())*/) return null;
-        userMeal.setUser(us_ref);
-        if (userMeal.getId() == null) {
+//        Integer uid = userMeal.getUser().getId();
+        if (null == us_ref) return null; // нет такого юзера вообще *** моэет проверять на ид...
+        if (userMeal.getUser() == null) userMeal.setUser(us_ref); //еда была без юзера - даем ей юзера
+        if(userMeal.getId() == null) { // если нет id у еды - она новая и мы её сохраняем
+                                    // юзер или был или мы его уже добавили
+//            userMeal.setUser(us_ref);
             em.persist(userMeal);
-        } else {
-            em.merge(userMeal);
         }
-        return em.find(UserMeal.class, userMeal.getId());
+//        else if(userId != userMeal.getUser().getId()) { // id у еды есть, мы ей записали её user'a, а его id не совпадает с id текущего - ошибка, получи Null
+        else if(userId != userMeal.getUser().getId()) { // id у еды есть, user был сразу, а его id не совпадает с id текущего - ошибка, получи Null
+//        else if(userId != us_ref.getId()) { // id у еды есть, user был сразу, а его id не совпадает с id текущего - ошибка, получи Null
+            return null;
+        } else // и ид есть и юзер совпал в еде совпал с тем который сохраняет - значит обновляем
+         {
+            userMeal.setUser(us_ref);
+            em.merge(userMeal); // у еды id было, user'ы совпали - обновляем запись
+        }
+        return em.find(UserMeal.class, userMeal.getId()); // возвращаем то что записали
     }
 
     @Transactional(readOnly = false)
