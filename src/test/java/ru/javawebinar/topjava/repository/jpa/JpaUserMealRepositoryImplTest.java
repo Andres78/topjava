@@ -13,10 +13,14 @@ import ru.javawebinar.topjava.model.UserMeal;
 import ru.javawebinar.topjava.repository.UserMealRepository;
 import ru.javawebinar.topjava.util.exception.NotFoundException;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.Arrays;
 
 import static org.junit.Assert.*;
 import static ru.javawebinar.topjava.MealTestData.*;
+import static ru.javawebinar.topjava.UserTestData.ADMIN_ID;
 import static ru.javawebinar.topjava.UserTestData.USER_ID;
 
 
@@ -43,15 +47,67 @@ public class JpaUserMealRepositoryImplTest {
 
     }
 
-    @Test(expected = NotFoundException.class)
+    @Test
     public void save() throws Exception {
         UserMeal created = getCreated();
-        repository.save(created, MealTestData.ADMIN_MEAL_ID);
+        repository.save(created, USER_ID);
+        MATCHER.assertCollectionEquals(Arrays.asList(created, MEAL6, MEAL5, MEAL4, MEAL3, MEAL2, MEAL1), repository.getAll(USER_ID));
+    }
+    @Test
+    public void testDelete() throws Exception {
+        repository.delete(MealTestData.MEAL1_ID, USER_ID);
+        MATCHER.assertCollectionEquals(Arrays.asList(MEAL6, MEAL5, MEAL4, MEAL3, MEAL2), repository.getAll(USER_ID));
+    }
+
+    @Test
+    public void testDeleteNotFound() throws Exception {
+        assertFalse(repository.delete(MEAL1_ID, 1));
+    }
+
+    @Test
+    public void testSave() throws Exception {
+        UserMeal created = getCreated();
+        repository.save(created, USER_ID);
         MATCHER.assertCollectionEquals(Arrays.asList(created, MEAL6, MEAL5, MEAL4, MEAL3, MEAL2, MEAL1), repository.getAll(USER_ID));
     }
 
     @Test
+    public void testGet() throws Exception {
+        UserMeal actual = repository.get(ADMIN_MEAL_ID, ADMIN_ID);
+        MATCHER.assertEquals(ADMIN_MEAL, actual);
+    }
+
+    @Test
+    public void testGetNotFound() throws Exception {
+        assertTrue(repository.get(MEAL1_ID, ADMIN_ID) == null);
+    }
+
+    @Test
+    public void testUpdate() throws Exception {
+        UserMeal updated = getUpdated();
+        repository.save(updated, USER_ID);
+        MATCHER.assertEquals(updated, repository.get(MEAL1_ID, USER_ID));
+    }
+
+    @Test
+    public void testNotFoundUpdate() throws Exception {
+        UserMeal item = repository.get(MEAL1_ID, USER_ID);
+        assertFalse(repository.save(item, ADMIN_ID) != null);
+    }
+
+    @Test
+    public void testGetAll() throws Exception {
+        MATCHER.assertCollectionEquals(USER_MEALS, repository.getAll(USER_ID));
+    }
+
+    @Test
+    public void testGetBetween() throws Exception {
+        MATCHER.assertCollectionEquals(Arrays.asList(MEAL3, MEAL2, MEAL1),
+                repository.getBetween(LocalDateTime.of(2015, Month.MAY, 30,0,0), LocalDateTime.of(2015, Month.MAY, 30,23,59), USER_ID));
+    }
+    @Test
     public void delete() throws Exception {
+
 
     }
 
