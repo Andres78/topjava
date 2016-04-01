@@ -27,6 +27,7 @@ public class JpaUserMealRepositoryImpl implements UserMealRepository {
     @Override
     public UserMeal save(UserMeal userMeal, int userId) {
         User us_ref = em.getReference(User.class, userId);
+        if ((userMeal.getId() != null) /*&& (userId != us_ref.getId() || userMeal.getUser().getId() != us_ref.getId())*/) return null;
         userMeal.setUser(us_ref);
         if (userMeal.getId() == null) {
             em.persist(userMeal);
