@@ -8,7 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import ru.javawebinar.topjava.UserTestData.*;
+import ru.javawebinar.topjava.web.UserTestData.*;
 import ru.javawebinar.topjava.model.Role;
 import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.util.exception.NotFoundException;
@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 
-import static ru.javawebinar.topjava.UserTestData.*;
+import static ru.javawebinar.topjava.web.UserTestData.*;
 
 @ContextConfiguration({
         "classpath:spring/spring-app.xml",

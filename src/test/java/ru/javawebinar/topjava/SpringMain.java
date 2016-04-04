@@ -3,6 +3,7 @@ package ru.javawebinar.topjava;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ru.javawebinar.topjava.to.UserMealWithExceed;
+import ru.javawebinar.topjava.web.UserTestData;
 import ru.javawebinar.topjava.web.meal.UserMealRestController;
 import ru.javawebinar.topjava.web.user.AdminRestController;
 
