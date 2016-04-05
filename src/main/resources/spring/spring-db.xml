@@ -77,20 +77,8 @@
               <!--p:password="${database.password}"/>-->
     <!--</beans>-->
 
-    <!--<beans profile="postgres">-->
-        <!--<context:property-placeholder location="classpath:db/postgres.properties" system-properties-mode="OVERRIDE"/>-->
-
-        <!--<bean id="dataSource"-->
-              <!--class="org.apache.tomcat.jdbc.pool.DataSource"-->
-              <!--p:driverClassName="${database.driverClassName}"-->
-              <!--p:url="${database.url}"-->
-              <!--p:username="${database.username}"-->
-              <!--p:password="${database.password}"/>-->
-    <!--</beans>-->
-
-
-    <beans profile="mysql">
-        <context:property-placeholder location="classpath:db/mysql.properties" system-properties-mode="OVERRIDE"/>
+    <beans profile="heroku">
+        <context:property-placeholder location="classpath:db/heroku.properties" system-properties-mode="OVERRIDE"/>
 
         <bean id="dataSource"
               class="org.apache.tomcat.jdbc.pool.DataSource"
@@ -99,6 +87,29 @@
               p:username="${database.username}"
               p:password="${database.password}"/>
     </beans>
+
+    <beans profile="postgres">
+        <context:property-placeholder location="classpath:db/postgres.properties" system-properties-mode="OVERRIDE"/>
+
+        <bean id="dataSource"
+              class="org.apache.tomcat.jdbc.pool.DataSource"
+              p:driverClassName="${database.driverClassName}"
+              p:url="${database.url}"
+              p:username="${database.username}"
+              p:password="${database.password}"/>
+    </beans>
+
+
+    <!--<beans profile="mysql">-->
+        <!--<context:property-placeholder location="classpath:db/mysql.properties" system-properties-mode="OVERRIDE"/>-->
+
+        <!--<bean id="dataSource"-->
+              <!--class="org.apache.tomcat.jdbc.pool.DataSource"-->
+              <!--p:driverClassName="${database.driverClassName}"-->
+              <!--p:url="${database.url}"-->
+              <!--p:username="${database.username}"-->
+              <!--p:password="${database.password}"/>-->
+    <!--</beans>-->
 
     <!--<beans profile="jdbc">-->
         <!--<context:component-scan base-package="ru.javawebinar.**.repository.jdbc"/>-->

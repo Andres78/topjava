@@ -6,7 +6,9 @@ package ru.javawebinar.topjava;
  */
 public class Profiles {
     public static final String
+            HEROKU = "heroku",
             POSTGRES = "postgres",
+            MYSQL = "mysql",
             HSQLDB = "hsqldb",
             JDBC = "jdbc",
             JPA = "jpa";
