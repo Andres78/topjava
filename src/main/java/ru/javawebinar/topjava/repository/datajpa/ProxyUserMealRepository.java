@@ -16,31 +16,15 @@ import java.util.List;
 @Transactional(readOnly = true)
 public interface ProxyUserMealRepository extends JpaRepository<UserMeal, Integer> {
 
-//    UserMeal saveWithUserId(Integer userId);
-
-
-//    @Override
-//    @Transactional
-//    UserMeal saveAndFlush(UserMeal userMeal);
-
-//    @Transactional
-//    @Modifying
-//    @Query("UPDATE F WHERE um.id=:id AND um.user.id=:userId")
-//    UserMeal updateUserMeal(@Param("um") UserMeal um);
-
     @Transactional
     @Modifying
-//    @Query(name = User.DELETE)
     @Query("DELETE FROM UserMeal um WHERE um.id=:id AND um.user.id=:userId")
     int delete(@Param("id") int id, @Param("userId") int userId);
-//    int deleteByIdAndUserId(Integer id);
 
     UserMeal getOneByIdAndUserId(Integer id, Integer userId);
 
     List<UserMeal> getAllByUserIdOrderByDateTimeDesc(Integer userId);
 
     List<UserMeal> findByUserIdAndDateTimeBetweenOrderByDateTimeDesc(Integer userId, LocalDateTime startDate, LocalDateTime endDate);
-
-
 
 }
