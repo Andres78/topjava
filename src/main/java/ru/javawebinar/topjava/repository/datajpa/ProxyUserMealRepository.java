@@ -19,6 +19,13 @@ public interface ProxyUserMealRepository extends JpaRepository<UserMeal, Integer
 //    UserMeal saveWithUserId(Integer userId);
 
 
+    @Override
+    @Transactional
+    UserMeal save(UserMeal userMeal);
+
+//    @Transactional
+//    UserMeal updateUserMeal(UserMeal userMeal);
+
     @Transactional
     @Modifying
 //    @Query(name = User.DELETE)
@@ -26,7 +33,7 @@ public interface ProxyUserMealRepository extends JpaRepository<UserMeal, Integer
     int delete(@Param("id") int id, @Param("userId") int userId);
 //    int deleteByIdAndUserId(Integer id);
 
-    UserMeal findOneByIdAndUserId(Integer id, Integer userId);
+    UserMeal getOne(Integer id);
 
     List<UserMeal> getAllByUserIdOrderByDateTimeDesc(Integer userId);
 
