@@ -13,8 +13,11 @@ import java.util.Collection;
  * GKislin
  * 06.03.2015.
  */
+
+
 @Service
 public class UserMealServiceImpl implements UserMealService {
+
 
     @Autowired
     private UserMealRepository repository;
