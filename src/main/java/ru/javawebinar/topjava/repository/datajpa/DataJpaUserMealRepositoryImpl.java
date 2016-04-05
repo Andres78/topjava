@@ -28,9 +28,7 @@ public class DataJpaUserMealRepositoryImpl implements UserMealRepository{
         if (user != null && user.getId() == userId)
             userMeal.setUser(user);
         else return null;
-        if (userMeal.isNew()) return proxy.save(userMeal);
-        //else return proxy.updateUserMeal(userMeal);
-        return null;
+        return proxy.saveAndFlush(userMeal);
     }
 
     @Override
@@ -40,9 +38,7 @@ public class DataJpaUserMealRepositoryImpl implements UserMealRepository{
 
     @Override
     public UserMeal get(int id, int userId) {
-        UserMeal userMeal = proxy.getOne(id);
-        if (userMeal.getUser().getId() == userId) return userMeal;
-        return null;
+        return proxy.getOneByIdAndUserId(id, userId);
     }
 
     @Override
