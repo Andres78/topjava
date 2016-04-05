@@ -13,14 +13,13 @@ public interface ProxyUserMealRepository extends JpaRepository<UserMeal, Integer
 
 //    UserMeal saveWithUserId(Integer userId);
 
- //   Integer deleteByIdAndUserId(Integer id, Integer userId);
+    int deleteByIdAndUserId(Integer id
+    );
 
     UserMeal findOneByIdAndUserId(Integer id, Integer userId);
 
     List<UserMeal> getAllByUserIdOrderByDateTimeDesc(Integer userId);
 
-
-//    List<UserMeal> getByUserIdAndBetweenStartDateAndEndDateOrderByDateTimeDesc(Integer userId, LocalDateTime startDate, LocalDateTime endDate);
     List<UserMeal> findByUserIdAndDateTimeBetweenOrderByDateTimeDesc(Integer userId, LocalDateTime startDate, LocalDateTime endDate);
 
 
