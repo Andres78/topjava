@@ -22,14 +22,7 @@ import java.util.Collections;
 
 import static ru.javawebinar.topjava.web.UserTestData.*;
 
-@ContextConfiguration({
-        "classpath:spring/spring-app.xml",
-        "classpath:spring/spring-db.xml"
-})
-@RunWith(SpringJUnit4ClassRunner.class)
-@Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
-@ActiveProfiles(Profiles.POSTGRES)
-public class UserServiceTest {
+abstract public class UserServiceTest extends DbTest {
 
     @Autowired
     protected UserService service;
@@ -38,6 +31,17 @@ public class UserServiceTest {
     public void setUp() throws Exception {
         service.evictCache();
     }
+
+    @Test
+    public void testUpdate() throws Exception {
+        TestUser updated = new TestUser(USER);
+        updated.setName("UpdatedName");
+        updated.setCaloriesPerDay(330);
+        service.update(updated.asUser());
+        MATCHER.assertEquals(updated, service.get(USER_ID));
+        updated.setName("User");
+        service.update(updated);
+    }
         
     @Test
     public void testSave() throws Exception {
@@ -45,6 +49,7 @@ public class UserServiceTest {
         User created = service.save(tu.asUser());
         tu.setId(created.getId());
         MATCHER.assertCollectionEquals(Arrays.asList(ADMIN, tu, USER), service.getAll());
+        service.delete(created.getId());
     }
 
     @Test(expected = DataAccessException.class)
@@ -86,12 +91,5 @@ public class UserServiceTest {
         MATCHER.assertCollectionEquals(Arrays.asList(ADMIN, USER), all);
     }
 
-    @Test
-    public void testUpdate() throws Exception {
-        TestUser updated = new TestUser(USER);
-        updated.setName("UpdatedName");
-        updated.setCaloriesPerDay(330);
-        service.update(updated.asUser());
-        MATCHER.assertEquals(updated, service.get(USER_ID));
-    }
+
 }

@@ -6,10 +6,12 @@ package ru.javawebinar.topjava;
  */
 public class Profiles {
     public static final String
+            JDBCnoPooling="JDBCnoPooling",
             HEROKU = "heroku",
             POSTGRES = "postgres",
             MYSQL = "mysql",
             HSQLDB = "hsqldb",
             JDBC = "jdbc",
-            JPA = "jpa";
+            JPA = "jpa",
+            DATAJPA = "datajpa";
 }
