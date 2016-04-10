@@ -20,7 +20,8 @@ import java.util.List;
  */
 
 @Repository
-public class JdbcUserRepositoryImpl implements UserRepository {
+public class
+JdbcUserRepositoryImpl implements UserRepository {
 
     private static final BeanPropertyRowMapper<User> ROW_MAPPER = BeanPropertyRowMapper.newInstance(User.class);
 
