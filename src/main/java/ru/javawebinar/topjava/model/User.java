@@ -1,5 +1,6 @@
 package ru.javawebinar.topjava.model;
 
+import org.springframework.transaction.annotation.Propagation;
 import ru.javawebinar.topjava.util.UserMealsUtil;
 
 import org.hibernate.annotations.Cache;

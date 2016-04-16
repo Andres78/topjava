@@ -13,6 +13,7 @@ import ru.javawebinar.topjava.util.exception.NotFoundException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Set;
 
 import static ru.javawebinar.topjava.UserTestData.*;
 
@@ -81,5 +82,12 @@ abstract public class AbstractUserServiceTest extends AbstractServiceTest {
         updated.setCaloriesPerDay(330);
         service.update(updated.asUser());
         MATCHER.assertEquals(updated, service.get(USER_ID));
+    }
+
+    @Test
+    public void testAdminForTwoRoles() throws Exception {
+        TestUser user = new TestUser(ADMIN);
+        service.update(user.asUser());
+        MATCHER.assertEquals(user, service.get(ADMIN_ID));
     }
 }
