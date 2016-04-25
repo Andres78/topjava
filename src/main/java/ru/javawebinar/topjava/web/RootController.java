@@ -1,5 +1,6 @@
 package ru.javawebinar.topjava.web;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,5 +40,11 @@ public class RootController {
         int userId = Integer.valueOf(request.getParameter("userId"));
         LoggedUser.setId(userId);
         return "redirect:meals";
+    }
+
+    @RequestMapping(value = "/meals", method = RequestMethod.GET)
+    public String mealsList(Model model) {
+        model.addAttribute("mealsList", mealService.getAll(LoggedUser.id()));
+        return "mealList";
     }
 }
