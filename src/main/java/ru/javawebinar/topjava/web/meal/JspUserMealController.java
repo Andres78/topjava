@@ -21,11 +21,11 @@ import java.util.Objects;
 @RequestMapping(value = "/meals")
 public class JspUserMealController extends AbstractUserMealController {
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String mealList(Model model) {
-        model.addAttribute("mealList", super.getAll());
-        return "mealList";
-    }
+//    @RequestMapping(method = RequestMethod.GET)
+//    public String mealList(Model model) {
+//        model.addAttribute("mealList", super.getAll());
+//        return "mealList";
+//    }
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public String delete(HttpServletRequest request) {
