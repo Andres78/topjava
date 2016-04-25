@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import ru.javawebinar.topjava.LoggedUser;
 import ru.javawebinar.topjava.service.UserMealService;
 import ru.javawebinar.topjava.service.UserService;
-
 import javax.servlet.http.HttpServletRequest;
 
 /**
