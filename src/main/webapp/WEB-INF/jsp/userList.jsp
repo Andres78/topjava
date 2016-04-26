@@ -60,7 +60,7 @@
                 <h2 class="modal-title"><fmt:message key="users.edit"/></h2>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="post" id="detailsForm">
+                <div class="form-horizontal" method="post" id="detailsForm">
                     <input type="text" hidden="hidden" id="id" name="id">
 
                     <div class="form-group">
@@ -87,12 +87,22 @@
                         </div>
                     </div>
 
+<%--                    <div class="form-group">
+                        <label for="enabled" class="control-label col-xs-3">Enabled</label>
+
+                        <div class="col-xs-9">
+                            <input type="checkbox" class="form-control" id="enabled" name="enabled"
+                                   placeholder="enabled">
+                        </div>
+                    </div>--%>
+
                     <div class="form-group">
                         <div class="col-xs-offset-3 col-xs-9">
                             <button type="submit" class="btn btn-primary">Save</button>
                         </div>
                     </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
