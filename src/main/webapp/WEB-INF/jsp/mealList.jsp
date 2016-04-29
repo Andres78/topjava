@@ -114,7 +114,7 @@
             "bInfo": false,
             "aoColumns": [
                 {
-                    "mData": "date_time"
+                    "mData": "dateTime"
                 },
                 {
                     "mData": "description"
