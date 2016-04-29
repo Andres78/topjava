@@ -6,6 +6,8 @@ function makeEditable() {
 
     $('.edit').click(function () {
         $('#id').val($(this).attr("id"));
+        $('#description').val($(this).attr("description"));
+        $('#calories').val($(this).attr("calories"));
         $('#editRow').modal();
     });
 
