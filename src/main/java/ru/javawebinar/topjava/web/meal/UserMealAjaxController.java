@@ -1,12 +1,16 @@
 package ru.javawebinar.topjava.web.meal;
 
+import org.springframework.beans.propertyeditors.StringArrayPropertyEditor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.javawebinar.topjava.model.UserMeal;
 import ru.javawebinar.topjava.to.UserMealWithExceed;
 import ru.javawebinar.topjava.util.TimeUtil;
 
+import java.net.URI;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -19,7 +23,8 @@ import static ru.javawebinar.topjava.web.meal.UserMealAjaxController.AJAX_URL;
  */
 
 @RestController
-@RequestMapping(value = AJAX_URL, produces = MediaType.APPLICATION_JSON_VALUE)
+//@RequestMapping(value = AJAX_URL, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping("/ajax/profile/meals")
 public class UserMealAjaxController extends AbstractUserMealController {
     public static final String AJAX_URL = "/ajax/profile/meals";
 
@@ -32,6 +37,32 @@ public class UserMealAjaxController extends AbstractUserMealController {
     public UserMeal get(@PathVariable("id") int id) {
         return super.get(id);
     }
+
+//    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+//    @RequestMapping(method = RequestMethod.POST)
+//    public ResponseEntity<UserMeal> createWithLocation(@RequestBody UserMeal meal) {
+//        UserMeal created = super.create(meal);
+//
+//        URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
+//                .path(AJAX_URL + "/{id}")
+//                .buildAndExpand(created.getId()).toUri();
+//
+//        return ResponseEntity.created(uriOfNewResource).body(created);
+//    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public void createOrUpdate(@RequestParam("id") int id,
+                               @RequestParam("date_time") LocalDateTime ldt,
+                               @RequestParam("description") String desc,
+                               @RequestParam("calories") int calor) {
+        UserMeal meal = new UserMeal(ldt, desc, calor);
+        if (id == 0) {
+            super.create(meal);
+        } else {
+            super.update(meal, id);
+        }
+    }
+
 
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

@@ -106,16 +106,17 @@
 <script type="text/javascript">
 
     var ajaxUrl = 'ajax/profile/meals/';
-    var datatableApi;
+    var mealsDatatableApi;
 
     // $(document).ready(function () {
     $(function () {
-        datatableApi = $('#datatable').dataTable({
+        debugger;
+        mealsDatatableApi = $('#datatable').dataTable({
             "bPaginate": false,
             "bInfo": false,
             "aoColumns": [
                 {
-                    "mData": "date"
+                    "mData": "date_time"
                 },
                 {
                     "mData": "description"

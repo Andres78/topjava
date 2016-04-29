@@ -36,10 +36,10 @@
                             <td><c:out value="${user.name}"/></td>
                             <td><a href="mailto:${user.email}">${user.email}</a></td>
                             <td>${user.roles}</td>
-                            <td>
+                <%--            <td>
                                 <input type="checkbox"
                                        <c:if test="${user.enabled}">checked</c:if> id="${user.id}"/>
-                            </td>
+                            </td>--%>
                             <td><fmt:formatDate value="${user.registered}" pattern="dd-MMMM-yyyy"/></td>
                             <td><a class="btn btn-xs btn-primary edit" id="${user.id}">Edit</a></td>
                             <td><a class="btn btn-xs btn-danger delete" id="${user.id}">Delete</a></td>
@@ -117,11 +117,12 @@
 <script type="text/javascript">
 
     var ajaxUrl = 'ajax/admin/users/';
-    var datatableApi;
+    var usersDatatableApi;
 
     // $(document).ready(function () {
     $(function () {
-        datatableApi = $('#datatable').dataTable({
+        debugger;
+        usersDatatableApi = $('#datatable').dataTable({
             "bPaginate": false,
             "bInfo": false,
             "aoColumns": [
@@ -133,9 +134,6 @@
                 },
                 {
                     "mData": "roles"
-                },
-                {
-                    "mData": "enabled"
                 },
                 {
                     "mData": "registered"
