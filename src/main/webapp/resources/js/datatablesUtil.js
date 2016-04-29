@@ -4,6 +4,11 @@ function makeEditable() {
         $('#editRow').modal();
     });
 
+    $('.edit').click(function () {
+        $('#id').val($(this).attr("id"));
+        $('#editRow').modal();
+    });
+
     $('.delete').click(function () {
         deleteRow($(this).attr("id"));
     });
