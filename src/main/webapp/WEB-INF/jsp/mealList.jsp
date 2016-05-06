@@ -8,8 +8,6 @@
 <jsp:include page="fragments/headTag.jsp"/>
 <link rel="stylesheet" href="webjars/datatables/1.10.11/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="webjars/datetimepicker/2.5.1/jquery.datetimepicker.css">
-
-<body>
 <jsp:include page="fragments/bodyHeader.jsp"/>
 
 <div class="jumbotron">
@@ -17,6 +15,48 @@
         <div class="shadow">
             <h3><fmt:message key="meals.title"/></h3>
             <div class="view-box">
+                <form method="post" class="form-horizontal" role="form" id="filter">
+                    <div class="view-box">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="startDate">From Date:</label>
+
+                            <div class="col-sm-2">
+                                <input type="date" name="startDate" id="startDate">
+                            </div>
+
+                            <label class="form-group">
+                                <label class="control-label col-sm-2" for="endDate">To Date:</label>
+
+                                <div class="col-sm-2">
+                                    <input type="date" name="endDate" id="endDate">
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="startTime">From Time:</label>
+
+                            <div class="col-sm-2">
+                                <input type="date" name="stratTime" id="startTime">
+                            </div>
+
+                            <label class="form-group">
+                                <label class="control-label col-sm-2" for="endTime">To Time:</label>
+
+                                <div class="col-sm-2">
+                                    <input type="date" name="endTime" id="endTime">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-8">
+                                <button type="submit" class="btn btn-primary pull-right">Filter</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
                 <a class="btn btn-sm btn-info" id="add"><fmt:message key="meals.add"/> </a>
 
                 <table class="table table-striped display" id="datatable">
@@ -33,13 +73,14 @@
                         <jsp:useBean id="meal" scope="page" type="ru.javawebinar.topjava.to.UserMealWithExceed"/>
                         <tr class="${meal.exceed ? 'exceeded' : 'normal'}">
                             <td><%--<tags:localDate date="${meal.dateTime.toLocalDate()}"/>--%>
-                                    <c:out value="${meal.dateTime.toLocalDate()} ${meal.dateTime.toLocalTime()}"/>
-                                <%--<%=TimeUtil.toString(meal.getDateTime())%>--%>
-                                <%--<c:out value="${meal.dateTime.to}"/>--%>
+                                <c:out value="${meal.dateTime.toLocalDate()} ${meal.dateTime.toLocalTime()}"/>
+                                    <%--<%=TimeUtil.toString(meal.getDateTime())%>--%>
+                                    <%--<c:out value="${meal.dateTime.to}"/>--%>
                             </td>
                             <td><c:out value="${meal.description}"/></td>
                             <td><c:out value="${meal.calories}"/></td>
-                            <td><a class="btn btn-xs btn-primary edit" id="${meal.id}"><fmt:message key="msg.edit"/></a>
+                            <td><a class="btn btn-xs btn-primary edit" id="${meal.id}"><fmt:message
+                                    key="msg.edit"/></a>
                             </td>
                             <td><a class="btn btn-xs btn-danger delete" id="${meal.id}"><fmt:message
                                     key="msg.delete"/></a></td>
@@ -57,7 +98,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h2 class="modal-title"><fmt:message key="meals.edit"/> </h2>
+                <h2 class="modal-title"><fmt:message key="meals.edit"/></h2>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" method="post" id="detailsForm">
@@ -65,7 +106,8 @@
                     <div class="form-group">
                         <label for="date_time" class="control-label col-xs-3">Date</label>
                         <div class="col-xs-9">
-                            <input type="datetime-local" class="form-control" id="date_time" name="date_time" placeholder="Date">
+                            <input type="datetime-local" class="form-control" id="date_time" name="date_time"
+                                   placeholder="Date">
                         </div>
                     </div>
 
@@ -73,7 +115,8 @@
                         <label for="description" class="control-label col-xs-3">Description</label>
 
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" id="description" name="description" placeholder="Description">
+                            <input type="text" class="form-control" id="description" name="description"
+                                   placeholder="Description">
                         </div>
                     </div>
 
@@ -81,7 +124,8 @@
                         <label for="calories" class="control-label col-xs-3">Calories</label>
 
                         <div class="col-xs-3">
-                            <input type="number" class="form-control" id="calories" name="calories" placeholder="Calories">
+                            <input type="number" class="form-control" id="calories" name="calories"
+                                   placeholder="Calories">
                         </div>
                     </div>
 
@@ -106,10 +150,25 @@
 <script type="text/javascript">
 
     var ajaxUrl = 'ajax/profile/meals/';
-    var datatableApi;
+    var oTable_datatable;
+    var oTable_datatable_params;
+    //    var datatableApi;
+
+    function updateTable() {
+        $.ajax({
+            type: "POST",
+            url: ajaxUrl + 'filter',
+            data: $('#filter').serialize(),
+            success: function (data) {
+                updateTableByData(data);
+            }
+        });
+        return false;
+    }
 
     $(function () {
-        datatableApi = $('#datatable').dataTable({
+        oTable_datatable = $('#datatable');
+        oTable_datatable_params = {
             "bPaginate": false,
             "bInfo": false,
             "aoColumns": [
@@ -123,82 +182,29 @@
                     "mData": "calories"
                 },
                 {
-                    "sDefaultContent": "",
+                    "sDefaultContent": "Edit",
                     "bSortable": false
                 },
                 {
-                    "sDefaultContent": "",
+                    "sDefaultContent": "Delete",
                     "bSortable": false
                 }
             ],
             "aaSorting": [
-                    [
-                            0,
-                            "asc"
-                    ]
+                [
+                    0,
+                    "desc"
+                ]
             ]
+        };
+        oTable_datatable.dataTable(oTable_datatable_params);
+
+        $('#filter').submit(function () {
+            updateTable();
+            return false;
+
         });
         makeEditable();
     });
 </script>
 </html>
-
-
-<%--
-
-
-<section>
-    &lt;%&ndash;http://stackoverflow.com/questions/10327390/how-should-i-get-root-folder-path-in-jsp-page&ndash;%&gt;
-    <h3><a href="${pageContext.request.contextPath}">Home</a></h3>
-    <h3><fmt:message key="meals.title"/></h3>
-    <form method="post" action="meals/filter">
-        <dl>
-            <dt>From Date:</dt>
-            <dd><input type="date" name="startDate" value="${startDate}"></dd>
-        </dl>
-        <dl>
-            <dt>To Date:</dt>
-            <dd><input type="date" name="endDate" value="${endDate}"></dd>
-        </dl>
-        <dl>
-            <dt>From Time:</dt>
-            <dd><input type="time" name="startTime" value="${startTime}"></dd>
-        </dl>
-        <dl>
-            <dt>To Time:</dt>
-            <dd><input type="time" name="endTime" value="${endTime}"></dd>
-        </dl>
-        <button type="submit">Filter</button>
-    </form>
-    <hr>
-    <a href="meals/create">Add Meal</a>
-    <hr>
-    <table border="1" cellpadding="8" cellspacing="0">
-        <thead>
-        <tr>
-            <th>Date</th>
-            <th>Description</th>
-            <th>Calories</th>
-            <th></th>
-            <th></th>
-        </tr>
-        </thead>
-        <c:forEach items="${mealList}" var="meal">
-            <jsp:useBean id="meal" scope="page" type="ru.javawebinar.topjava.to.UserMealWithExceed"/>
-            <tr class="${meal.exceed ? 'exceeded' : 'normal'}">
-                <td>
-                        &lt;%&ndash;${meal.dateTime.toLocalDate()} ${meal.dateTime.toLocalTime()}&ndash;%&gt;
-                    <%=TimeUtil.toString(meal.getDateTime())%>
-                </td>
-                <td>${meal.description}</td>
-                <td>${meal.calories}</td>
-                <td><a href="meals/update?id=${meal.id}">Update</a></td>
-                <td><a href="meals/delete?id=${meal.id}">Delete</a></td>
-            </tr>
-        </c:forEach>
-    </table>
-</section>
-<jsp:include page="fragments/footer.jsp"/>
-</body>
---%>
-

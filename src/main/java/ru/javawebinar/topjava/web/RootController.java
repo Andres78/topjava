@@ -9,6 +9,7 @@ import ru.javawebinar.topjava.LoggedUser;
 import ru.javawebinar.topjava.model.UserMeal;
 import ru.javawebinar.topjava.service.UserMealService;
 import ru.javawebinar.topjava.service.UserService;
+import ru.javawebinar.topjava.util.UserMealsUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
@@ -42,28 +43,28 @@ public class RootController {
         LoggedUser.setId(userId);
         return "redirect:meals";
     }
-/*
+
 
     @RequestMapping(value = "/meals", method = RequestMethod.GET)
     public String mealList(Model model) {
-        model.addAttribute("mealList", mealService.getAll(LoggedUser.id()));
+        model.addAttribute("mealList", UserMealsUtil.getWithExceeded(mealService.getAll(LoggedUser.id()), LoggedUser.getCaloriesPerDay()));
         return "mealList";
     }
 
-    @RequestMapping(value = "/meals", method = RequestMethod.POST)
-    public String setMeal(HttpServletRequest request) {
-        int mealId = Integer.valueOf(request.getParameter("mealId"));
-        UserMeal meal = new UserMeal(LocalDateTime.now(),
-                                     request.getParameter("description"),
-                                     Integer.parseInt(request.getParameter("calories")));
+//    @RequestMapping(value = "/meals", method = RequestMethod.POST)
+//    public String setMeal(HttpServletRequest request) {
+//        int mealId = Integer.valueOf(request.getParameter("mealId"));
+//        UserMeal meal = new UserMeal(LocalDateTime.now(),
+//                                     request.getParameter("description"),
+//                                     Integer.parseInt(request.getParameter("calories")));
+//
+//        if (mealId == 0) {
+//            mealService.save(meal, LoggedUser.id());
+//        } else {
+//            mealService.update(meal, LoggedUser.id());
+//        }
+//        return "mealList";
+//    }
 
-        if (mealId == 0) {
-            mealService.save(meal, LoggedUser.id());
-        } else {
-            mealService.update(meal, LoggedUser.id());
-        }
-        return "mealList";
-    }
-*/
 
 }

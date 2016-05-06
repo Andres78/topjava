@@ -36,14 +36,14 @@ function deleteRow(id) {
     });
 }
 
-function updateTable() {
-    $.get(ajaxUrl, function (data) {
-        datatableApi.fnClearTable();
-        $.each(data, function (key, item) {
-            datatableApi.fnAddData(item);
-        });
-        datatableApi.fnDraw();
-    });
+function updateTableByData(data) {
+    oTable_datatable.fnClearTable();
+    $.each(data, function (key, item) {
+        oTable_datatable.fnAddData(item);
+        
+    })
+    oTable_datatable.fnDraw();
+    
 }
 
 function save() {

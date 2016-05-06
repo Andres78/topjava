@@ -88,6 +88,14 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="enabled" class="control-label col-xs-3">Enabled</label>
+
+                        <div class="col-xs-9">
+                            <input type="checkbox" class="form-control" id="enabled" name="enabled" placeholder="enabled">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <div class="col-xs-offset-3 col-xs-9">
                             <button type="submit" class="btn btn-primary">Save</button>
                         </div>
@@ -107,11 +115,19 @@
 <script type="text/javascript">
 
     var ajaxUrl = 'ajax/admin/users/';
-    var datatableApi;
+    var oTable_datatable;
+    var oTable_datatable_params;
+
+    function updateTable() {
+        $.get(ajaxUrl, function (data) {
+            updateTableByData(data);
+        });
+    }
 
     // $(document).ready(function () {
     $(function () {
-        datatableApi = $('#datatable').dataTable({
+        oTable_datatable=$('#datatable');
+        oTable_datatable_params = {
             "bPaginate": false,
             "bInfo": false,
             "aoColumns": [
@@ -131,11 +147,11 @@
                     "mData": "registered"
                 },
                 {
-                    "sDefaultContent": "",
+                    "sDefaultContent": "Edit",
                     "bSortable": false
                 },
                 {
-                    "sDefaultContent": "",
+                    "sDefaultContent": "Delete",
                     "bSortable": false
                 }
             ],
@@ -145,7 +161,8 @@
                     "asc"
                 ]
             ]
-        });
+        };
+        oTable_datatable.dataTable(oTable_datatable_params);
         makeEditable();
     });
 </script>
