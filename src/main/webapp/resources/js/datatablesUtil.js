@@ -73,7 +73,7 @@ function successNoty(text) {
 
 function enable(chkbox) {
     var enabled = chkbox.is(":checked");
-    chkbox.parent().parent().css("text-decoration", enabled ? "none" : "line-trough");
+    chkbox.parent().parent().css("text-decoration", enabled ? "none" : "line-through");
     $.ajax({
         url:ajaxUrl + chkbox.attr('id'),
         type: 'POST',
