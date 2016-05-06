@@ -35,6 +35,7 @@ function updateTableByData(data) {
         datatableApi.fnAddData(item);
     });
     datatableApi.fnDraw();
+    init();
 }
 
 function save() {
@@ -70,6 +71,20 @@ function successNoty(text) {
     });
 }
 
+function enable(chkbox) {
+    var enabled = chkbox.is(":checked");
+    chkbox.parent().parent().css("text-decoration", enabled ? "none" : "line-trough");
+    $.ajax({
+        url:ajaxUrl + chkbox.attr('id'),
+        type: 'POST',
+        data: 'enabled=' + enabled,
+        success: function () {
+            successNoty(enabled ? 'Enabled' : 'Disabled');
+
+        }
+    });
+}
+
 function failNoty(event, jqXHR, options, jsExc) {
     closeNoty();
     failedNote = noty({
@@ -77,4 +92,5 @@ function failNoty(event, jqXHR, options, jsExc) {
         type: 'error',
         layout: 'bottomRight'
     });
+
 }

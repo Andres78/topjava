@@ -38,6 +38,10 @@ public abstract class AbstractUserController {
         service.delete(id);
     }
 
+    public void enable(int id, boolean enabled) {
+        log.info("enabled " + id + " : " + enabled);
+    }
+
     public void update(User user, int id) {
         user.setId(id);
         log.info("update " + user);
