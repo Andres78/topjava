@@ -159,7 +159,7 @@
     function init() {
         $(':checkbox').each(function () {
             if (!$(this).is(":checked")) {
-                $(this).parent().parent.css("text-decoration", "line-through");
+                $(this).parent().parent().css("text-decoration", "line-through");
             }
         });
     }
