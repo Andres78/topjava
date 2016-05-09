@@ -1,6 +1,7 @@
 package ru.javawebinar.topjava.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * User: gkislin
@@ -9,7 +10,7 @@ import javax.persistence.*;
 @MappedSuperclass
 @Access(AccessType.FIELD)
 //@JsonAutoDetect(fieldVisibility = ANY, getterVisibility = NONE, isGetterVisibility = NONE, setterVisibility = NONE)
-public class BaseEntity {
+public class BaseEntity  implements Serializable {
     public static final int START_SEQ = 100000;
 
     @Id

@@ -9,6 +9,7 @@ import ru.javawebinar.topjava.util.UserUtil;
 
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.EnumSet;
 import java.util.List;
@@ -26,7 +27,7 @@ import java.util.Set;
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Entity
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "users_unique_email_idx")})
-public class User extends NamedEntity {
+public class User extends NamedEntity implements Serializable {
 
     public static final String DELETE = "User.delete";
     public static final String ALL_SORTED = "User.getAllSorted";
