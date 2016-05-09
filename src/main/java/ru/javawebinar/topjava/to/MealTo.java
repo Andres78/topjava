@@ -57,6 +57,13 @@ public class MealTo implements Serializable {
         return calories;
     }
 
+    public MealTo(Integer id, LocalDateTime dateTime, String description, Integer calories) {
+        this.id = id;
+        this.dateTime = dateTime;
+        this.description = description;
+        this.calories = calories;
+    }
+
     @Override
     public String  toString() {
         return "MealTo{" +
