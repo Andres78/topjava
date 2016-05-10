@@ -59,8 +59,21 @@ public class UserMealRestController extends AbstractUserMealController {
 
     @RequestMapping(value = "/filter", method = RequestMethod.GET)
     public List<UserMealWithExceed> getBetween(
-            @RequestParam(value = "startDate", required = false) LocalDate startDate, @RequestParam(value = "startTime", required = false) LocalTime startTime,
-            @RequestParam(value = "endDate", required = false) LocalDate endDate, @RequestParam(value = "endTime", required = false) LocalTime endTime) {
-        return super.getBetween(startDate, startTime, endDate, endTime);
+            @RequestParam(value = "startDate", required = false) String startDate, @RequestParam(value = "startTime", required = false) String startTime,
+            @RequestParam(value = "endDate", required = false) String endDate, @RequestParam(value = "endTime", required = false) String endTime) {
+        LocalDate _startDate, _endDate;
+        LocalTime _startTime, _endTime;
+        _startDate = LocalDate.parse(startDate);
+        _startTime = LocalTime.parse(startTime);
+        _endDate = LocalDate.parse(endDate);
+        _endTime = LocalTime.parse(endTime);
+        return super.getBetween(_startDate, _startTime, _endDate, _endTime);
     }
+
+//    @RequestMapping(value = "/filter", method = RequestMethod.GET)
+//    public List<UserMealWithExceed> getBetween(
+//            @RequestParam(value = "startDate", required = false) LocalDate startDate, @RequestParam(value = "startTime", required = false) LocalTime startTime,
+//            @RequestParam(value = "endDate", required = false) LocalDate endDate, @RequestParam(value = "endTime", required = false) LocalTime endTime) {
+//        return super.getBetween(startDate, startTime, endDate, endTime);
+//    }
 }

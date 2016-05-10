@@ -13,6 +13,7 @@ import ru.javawebinar.topjava.model.UserMeal;
 import ru.javawebinar.topjava.to.MealTo;
 import ru.javawebinar.topjava.to.UserMealWithExceed;
 import ru.javawebinar.topjava.util.UserMealsUtil;
+import ru.javawebinar.topjava.util.converter.LocalDateFormatter;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
@@ -65,9 +66,16 @@ public class UserMealAjaxController extends AbstractUserMealController {
 
     @RequestMapping(value = "/filter", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<UserMealWithExceed> getBetween(
-            @RequestParam(value = "startDate", required = false) LocalDate startDate, @RequestParam(value = "startTime", required = false) LocalTime startTime,
-            @RequestParam(value = "endDate", required = false) LocalDate endDate, @RequestParam(value = "endTime", required = false) LocalTime endTime) {
+            @RequestParam(value = "startDate", required = false) String startDate, @RequestParam(value = "startTime", required = false) String startTime,
+            @RequestParam(value = "endDate", required = false) String endDate, @RequestParam(value = "endTime", required = false) String endTime) {
         log.info(" /filter");
-        return super.getBetween(startDate, startTime, endDate, endTime);
+        LocalDate _startDate = null, _endDate = null;
+        LocalTime _startTime = null, _endTime = null;
+        if (null != startDate && !startDate.equals(""))  _startDate  = LocalDate.parse(startDate);
+        if (null != endDate && !endDate.equals(""))    _endDate    = LocalDate.parse(endDate);
+        if (null != startTime && !startTime.equals(""))  _startTime  = LocalTime.parse(startTime);
+        if (null != endTime && !endTime.equals(""))    _endTime    = LocalTime.parse(endTime);
+        return super.getBetween(_startDate, _startTime, _endDate, _endTime);
+//        return super.getBetween(startDate, startTime, endDate, endTime);
     }
 }

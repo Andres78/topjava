@@ -11,6 +11,26 @@ function updateTable() {
     return false;
 }
 
+$('#datep1').datetimepicker({
+    timepicker: false,
+    format: 'Y-m-d'
+});
+
+$('#datep2').datetimepicker({
+    timepicker: false,
+    format: 'Y-m-d'
+});
+
+$('#timep1').datetimepicker({
+    datepicker: false,
+    format: 'H:i'
+})
+
+$('#timep2').datetimepicker({
+    datepicker: false,
+    format: 'H:i'
+})
+
 $(function () {
     datatableApi = $('#datatable').DataTable({
         "ajax": {

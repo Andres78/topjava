@@ -18,29 +18,29 @@
             <div class="view-box">
                 <form method="post" class="form-horizontal" role="form" id="filter">
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="startDate">From Date:</label>
+                        <label class="control-label col-sm-2" for="datep1">From Date:</label>
 
                         <div class="col-sm-2">
-                            <input type="date" name="startDate" id="startDate">
+                            <input type="text" name="startDate" id="datep1" onclick="tpick()">
                         </div>
 
-                        <label class="control-label col-sm-2" for="endDate">To Date:</label>
+                        <label class="control-label col-sm-2" for="datep2">To Date:</label>
 
                         <div class="col-sm-2">
-                            <input type="date" name="endDate" id="endDate">
+                            <input type="text" name="endDate" id="datep2">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="startTime">From Time:</label>
+                        <label class="control-label col-sm-2" for="timep1">From Time:</label>
 
                         <div class="col-sm-2">
-                            <input type="time" name="startTime" id="startTime">
+                            <input type="text" name="startTime" id="timep1">
                         </div>
 
-                        <label class="control-label col-sm-2" for="endTime">To Time:</label>
+                        <label class="control-label col-sm-2" for="timep2">To Time:</label>
 
                         <div class="col-sm-2">
-                            <input type="time" name="endTime" id="endTime">
+                            <input type="text" name="endTime" id="timep2">
                         </div>
                     </div>
                     <div class="form-group">
