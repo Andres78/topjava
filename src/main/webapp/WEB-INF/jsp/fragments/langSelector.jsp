@@ -11,13 +11,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-<div id="cssmenu">
+<div id='cssmenu'>
     <ul>
         <li class='active has-sub last'><a href=''><span>${pageContext.response.locale}</span></a>
             <ul>
                 <li><a href='?language=en'><span>English</span></a></li>
                 <li class="last"><a href='?language=ru'><span>Русский</span></a></li>
             </ul>
+        </li>
     </ul>
 </div>
 
