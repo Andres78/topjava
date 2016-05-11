@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 public interface ExceptionInfoHandler {
     Logger LOG = LoggerFactory.getLogger(ExceptionInfoHandler.class);
 
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(HttpStatus.NOT_FOUND) // 404
     @ExceptionHandler(NotFoundException.class)
     @ResponseBody
     @Order(Ordered.HIGHEST_PRECEDENCE)
@@ -35,10 +35,14 @@ public interface ExceptionInfoHandler {
     @ResponseBody
     @Order(Ordered.HIGHEST_PRECEDENCE + 1)
     default ErrorInfo conflict(HttpServletRequest req, DataIntegrityViolationException e) {
+        String excecptionMsg = e.getMessage();
+        if (excecptionMsg.contains("constraint [users_unique_email_idx")) {
+            e = new DataIntegrityViolationException("User with this email already present in application.");
+        }
         return logAndGetErrorInfo(req, e);
     }
 
-    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY) // 422
     @ExceptionHandler(ValidationException.class)
     @ResponseBody
     @Order(Ordered.HIGHEST_PRECEDENCE + 2)
@@ -46,7 +50,7 @@ public interface ExceptionInfoHandler {
         return logAndGetErrorInfo(req, e);
     }
 
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR) // 500
     @ExceptionHandler(Exception.class)
     @ResponseBody
     @Order(Ordered.LOWEST_PRECEDENCE)
