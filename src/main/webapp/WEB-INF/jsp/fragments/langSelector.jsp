@@ -13,10 +13,10 @@
 
 <div id='cssmenu'>
     <ul>
-        <li class='active has-sub last'><a href=''><span>${pageContext.response.locale}</span></a>
+        <li class='has-sub'><a href='#'>${pageContext.response.locale}</a>
             <ul>
-                <li><a href='?language=en'><span>English</span></a></li>
-                <li class="last"><a href='?language=ru'><span>Русский</span></a></li>
+                <li><a href='?language=en'>English</a></li>
+                <li><a href='?language=ru'>Русский</a></li>
             </ul>
         </li>
     </ul>

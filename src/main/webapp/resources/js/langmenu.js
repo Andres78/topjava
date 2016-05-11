@@ -1,24 +1,24 @@
-( function( $ ) {
-    $( document ).ready(function() {
-        $('#cssmenu ul ul li:odd').addClass('odd');
-        $('#cssmenu ul ul li:even').addClass('even');
-        $('#cssmenu > ul > li > a').click(function() {
-            $('#cssmenu li').removeClass('active');
-            $(this).closest('li').addClass('active');
-            var checkElement = $(this).next();
-            if((checkElement.is('ul')) && (checkElement.is(':visible'))) {
-                $(this).closest('li').removeClass('active');
-                checkElement.slideUp('normal');
+(function($){
+    $(document).ready(function(){
+
+        $('#cssmenu li.active').addClass('open').children('ul').show();
+        $('#cssmenu li.has-sub>a').on('click', function(){
+            $(this).removeAttr('href');
+            var element = $(this).parent('li');
+            if (element.hasClass('open')) {
+                element.removeClass('open');
+                element.find('li').removeClass('open');
+                element.find('ul').slideUp(200);
             }
-            if((checkElement.is('ul')) && (!checkElement.is(':visible'))) {
-                $('#cssmenu ul ul:visible').slideUp('normal');
-                checkElement.slideDown('normal');
-            }
-            if($(this).closest('li').find('ul').children().length == 0) {
-                return true;
-            } else {
-                return false;
+            else {
+                element.addClass('open');
+                element.children('ul').slideDown(200);
+                element.siblings('li').children('ul').slideUp(200);
+                element.siblings('li').removeClass('open');
+                element.siblings('li').find('li').removeClass('open');
+                element.siblings('li').find('ul').slideUp(200);
             }
         });
+
     });
-} )( jQuery );
+})(jQuery);
