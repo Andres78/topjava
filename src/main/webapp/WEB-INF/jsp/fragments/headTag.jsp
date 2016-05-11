@@ -12,8 +12,7 @@
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="webjars/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="shortcut icon" href="resources/images/icon-meal.png">
+    <script type="text/javascript" src="webjars/jquery/2.2.3/jquery.min.js"></script>
+    <script src="resources/js/langmenu.js" type="text/javascript"></script>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-    <script src="resources/js/langmenu.js"></script>
 </head>

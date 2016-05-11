@@ -17,6 +17,9 @@
                     <input type="password" placeholder="Password" class="form-control" name='password'>
                 </div>
                 <button type="submit" class="btn btn-success"><fmt:message key="app.login"/></button>
+                <div class="btn btn-small">
+                    <jsp:include page="fragments/langSelector.jsp" />
+                </div>
             </form>
         </div>
     </div>
@@ -77,5 +80,6 @@
     </div>
 </div>
 <jsp:include page="fragments/footer.jsp"/>
+
 </body>
 </html>

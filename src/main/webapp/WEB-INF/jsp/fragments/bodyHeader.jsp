@@ -16,8 +16,11 @@
                     <a class="btn btn-info" role="button" href="profile">${userTo.name} profile</a>
                     <a class="btn btn-primary" role="button" href="logout"><fmt:message key="app.logout"/></a>
                 </sec:authorize>
+                <div class="btn btn-small">
+                    <jsp:include page="langSelector.jsp" />
+                </div>
             </form>
-            <jsp:include page="langSelector.jsp" />
         </div>
+
     </div>
 </div>
