@@ -17,6 +17,7 @@
 
     <mvc:interceptors>
         <bean class="ru.javawebinar.topjava.web.interceptor.ModelInterceptor"/>
+        <ref bean="localeChangeInterceptor" />
     </mvc:interceptors>
 
     <mvc:annotation-driven conversion-service="conversionService">
@@ -54,6 +55,28 @@
           p:defaultEncoding="UTF-8"
           p:basenames="file:///#{systemEnvironment['TOPJAVA_ROOT']}/config/messages/app">
     </bean>
+
+
+    <bean id="localeResolver"
+          class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <property name="cookieName" value="localeCookie"/>
+        <property name="cookieMaxAge" value="4000"/>
+        <property name="defaultLocale" value="en" />
+    </bean>
+
+    <bean id="localeChangeInterceptor"
+          class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+        <property name="paramName" value="language" />
+    </bean>
+
+    <!--<bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" >-->
+        <!--<property name="interceptors">-->
+            <!--<list>-->
+                <!--<ref bean="localeChangeInterceptor" />-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+
 
     <!-- uses WebJars so Javascript and CSS libs can be declared as Maven dependencies (Bootstrap, jQuery...) -->
     <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>

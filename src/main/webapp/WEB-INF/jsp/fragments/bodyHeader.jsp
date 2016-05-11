@@ -7,7 +7,6 @@
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <a href="meals" class="navbar-brand"><fmt:message key="app.title"/></a>
-
         <div class="collapse navbar-collapse">
             <form class="navbar-form navbar-right">
                 <sec:authorize access="isAuthenticated()">
@@ -18,6 +17,7 @@
                     <a class="btn btn-primary" role="button" href="logout"><fmt:message key="app.logout"/></a>
                 </sec:authorize>
             </form>
+            <jsp:include page="langSelector.jsp" />
         </div>
     </div>
 </div>
