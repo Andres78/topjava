@@ -1,5 +1,57 @@
 var form;
 
+var datefield=document.createElement("input");
+datefield.setAttribute("type", "date");
+if (datefield.type!="date"){ //if browser doesn't support input type="date", load files for jQuery UI Date Picker
+    var startDate = $('#startDate');
+    var endDate = $('#endDate');
+    var startTime=$('#startTime');
+    var endTime=$('#endTime');
+    var dateTime=$('#dateTime');
+};
+
+
+startDate.datetimepicker({
+    timepicker: false,
+    format: 'Y-m-d',
+    lang: 'ru',
+    formatDate: 'Y-m-d',
+    onShow: function (ct) {
+        this.setOptions({
+            maxDate: endDate.val() ? endDate.val() : false
+        })
+    }
+});
+endDate.datetimepicker({
+    timepicker: false,
+    format: 'Y-m-d',
+    lang: 'ru',
+    formatDate: 'Y-m-d',
+    onShow: function (ct) {
+        this.setOptions({
+            minDate: startDate.val() ? startDate.val() : false
+        })
+    }
+});
+
+startTime.datetimepicker({
+    datepicker: false,
+    format: 'H:i',
+    lang: 'ru'
+});
+
+endTime.datetimepicker({
+    datepicker: false,
+    format: 'H:i',
+    lang: 'ru'
+});
+
+dateTime.datetimepicker({
+    format: 'Y-m-d H:i',
+    lang: 'ru'
+});
+
+
 function makeEditable() {
     form = $('#detailsForm');
 
