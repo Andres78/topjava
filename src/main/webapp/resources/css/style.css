@@ -7,7 +7,7 @@
     float:left;
     width:120px;
     color: #2f9635;
-    background-color: #3a3a3a;
+    background-color: #000000;
     text-align:left;
     position:absolute;
     z-index:99;}
@@ -17,7 +17,7 @@
     margin:0px 5px;
     width:120px;
     color: #2f9635;
-    background-color: rgba(0, 0, 0, 0.81);
+    background-color: rgba(0, 0, 0, 0.51);
     line-height:1.5;
     text-align:center;}
 

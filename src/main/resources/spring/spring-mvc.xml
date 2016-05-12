@@ -54,7 +54,9 @@
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
           p:cacheSeconds="60"
           p:defaultEncoding="UTF-8"
-          p:basenames="file:///#{systemEnvironment['TOPJAVA_ROOT']}/config/messages/app">
+          p:basenames="file:///#{systemEnvironment['TOPJAVA_ROOT']}/config/messages/app"
+          p:fallbackToSystemLocale="false">
+
     </bean>
 
 
