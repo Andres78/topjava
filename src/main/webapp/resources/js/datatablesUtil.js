@@ -7,7 +7,6 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", loa
     var endDate = $('#endDate');
     var startTime=$('#startTime');
     var endTime=$('#endTime');
-    var dateTime=$('#dateTime');
 };
 
 
@@ -43,11 +42,6 @@ startTime.datetimepicker({
 endTime.datetimepicker({
     datepicker: false,
     format: 'H:i',
-    lang: 'ru'
-});
-
-dateTime.datetimepicker({
-    format: 'Y-m-d H:i',
     lang: 'ru'
 });
 

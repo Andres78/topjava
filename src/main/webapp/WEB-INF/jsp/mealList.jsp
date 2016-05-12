@@ -82,7 +82,7 @@
 
                         <div class="col-xs-9">
 
-                            <input type="datetime" id="dateTime" name="dateTime">
+                            <input class="form-control" id="dateTime" name="dateTime" placeholder="Date">
                         </div>
                     </div>
                     <div class="form-group">

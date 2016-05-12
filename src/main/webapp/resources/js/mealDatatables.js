@@ -61,7 +61,12 @@ $(function () {
                 updateTable();
                 return false;
             });
-
+            
+            $('#dateTime').datetimepicker({
+                format: 'Y-m-d H:i',
+                lang: 'ru'
+            });
+            
             makeEditable();
         }
     });
