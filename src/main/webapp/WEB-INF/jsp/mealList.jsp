@@ -81,7 +81,8 @@
                         <label for="dateTime" class="control-label col-xs-3">Date</label>
 
                         <div class="col-xs-9">
-                            <input type="datetime" id="dateTime" name="dateTime" placeholder="Date">
+
+                            <input type="datetime" id="dateTime" name="dateTime">
                         </div>
                     </div>
                     <div class="form-group">
