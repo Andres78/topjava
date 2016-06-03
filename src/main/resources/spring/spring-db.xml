@@ -13,15 +13,6 @@
        http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd">
 
-    <!-- Change DB by comment/uncomment property-placeholder -->
-
-    <!--<context:property-placeholder location="classpath:db/postgres.properties" system-properties-mode="OVERRIDE"/>-->
-    <!--<context:property-placeholder location="classpath:db/hsqldb.properties" system-properties-mode="OVERRIDE"/>-->
-
-    <!--<context:component-scan base-package="ru.javawebinar.**.repository.jpa"/>-->
-    <!--<context:component-scan base-package="ru.javawebinar.**.repository.datajpa"/>-->
-    <!--<jpa:repositories base-package="ru.javawebinar.**.repository.datajpa"/>-->
-
 
     <jdbc:initialize-database data-source="dataSource" enabled="${database.init}">
         <jdbc:script location="classpath:db/${jdbc.initLocation}"/>
@@ -74,12 +65,12 @@
     </beans>
 
     <beans profile="tomcat">
-        <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/topjava"/>
+        <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/mealscounter"/>
         <context:property-placeholder location="classpath:db/tomcat.properties" system-properties-mode="OVERRIDE"/>
     </beans>
 
     <beans profile="jdbc">
-        <context:component-scan base-package="ru.javawebinar.**.repository.jdbc"/>
+        <context:component-scan base-package="es.ahs.**.repository.jdbc"/>
         <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
             <constructor-arg ref="dataSource"/>
         </bean>
@@ -122,7 +113,7 @@
     <beans profile="datajpa,jpa">
         <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
               p:dataSource-ref="dataSource"
-              p:packagesToScan="ru.javawebinar.**.model">
+              p:packagesToScan="es.ahs.**.model">
             <!--p:persistenceUnitName="persistenceUnit">-->
 
             <property name="jpaPropertyMap">
@@ -155,15 +146,15 @@
         <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
               p:entityManagerFactory-ref="entityManagerFactory"/>
 
-        <bean class="ru.javawebinar.topjava.repository.JpaUtil"/>
+        <bean class="es.ahs.mealscounter.repository.JpaUtil"/>
     </beans>
 
     <beans profile="jpa">
-        <context:component-scan base-package="ru.javawebinar.**.repository.jpa"/>
+        <context:component-scan base-package="es.ahs.**.repository.jpa"/>
     </beans>
 
     <beans profile="datajpa">
-        <context:component-scan base-package="ru.javawebinar.**.repository.datajpa"/>
-        <jpa:repositories base-package="ru.javawebinar.**.repository.datajpa"/>
+        <context:component-scan base-package="es.ahs.**.repository.datajpa"/>
+        <jpa:repositories base-package="es.ahs.**.repository.datajpa"/>
     </beans>
 </beans>

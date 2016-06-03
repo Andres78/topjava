@@ -2,14 +2,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ru.javawebinar</groupId>
-    <artifactId>topjava</artifactId>
+    <groupId>es.ahs</groupId>
+    <artifactId>mealscounter</artifactId>
     <packaging>war</packaging>
 
     <version>1.0-SNAPSHOT</version>
 
-    <name>Calories Management</name>
-    <url>http://topjava.herokuapp.com/</url>
+    <name>Meals counter</name>
+    <url>http://mealscounter.herokuapp.com/</url>
 
     <properties>
         <java.version>1.8</java.version>
@@ -49,7 +49,7 @@
     </properties>
 
     <build>
-        <finalName>topjava</finalName>
+        <finalName>mealscounter</finalName>
         <defaultGoal>package</defaultGoal>
         <plugins>
             <plugin>

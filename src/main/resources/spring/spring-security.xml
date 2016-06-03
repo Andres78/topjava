@@ -30,7 +30,7 @@
     </http>
 
 
-    <beans:bean class="ru.javawebinar.topjava.util.PasswordUtil" id="passwordEncoder" factory-method="getPasswordEncoder"/>
+    <beans:bean class="es.ahs.mealscounter.util.PasswordUtil" id="passwordEncoder" factory-method="getPasswordEncoder"/>
 
     <authentication-manager>
         <authentication-provider user-service-ref="userService">

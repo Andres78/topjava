@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="topjava" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="mealscounter" tagdir="/WEB-INF/tags" %>
 
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
@@ -21,10 +21,10 @@
                            action="${register ? 'register' : 'profile'}" charset="utf-8"
                            accept-charset="UTF-8">
 
-                    <topjava:inputField label="Name" name="name"/>
-                    <topjava:inputField label="Email" name="email"/>
-                    <topjava:inputField label="Password" name="password" inputType="password"/>
-                    <topjava:inputField label="Calories per day" name="caloriesPerDay" inputType="number"/>
+                    <mealscounter:inputField label="Name" name="name"/>
+                    <mealscounter:inputField label="Email" name="email"/>
+                    <mealscounter:inputField label="Password" name="password" inputType="password"/>
+                    <mealscounter:inputField label="Calories per day" name="caloriesPerDay" inputType="number"/>
 
                     <div class="form-group">
                         <div class="col-xs-offset-2 col-xs-10">

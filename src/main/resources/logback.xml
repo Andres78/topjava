@@ -9,7 +9,7 @@
     <jmxConfigurator/>
 
     <appender name="file" class="ch.qos.logback.core.FileAppender">
-        <file>${TOPJAVA_ROOT}/log/topjava.log</file>
+        <file>${TOPJAVA_ROOT}/log/mealscounter.log</file>
 
         <encoder>
             <charset>UTF-8</charset>
@@ -29,7 +29,7 @@
     <logger name="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver" level="debug"/>
     <logger name="org.springframework.security.web.csrf.CsrfFilter" level="debug"/>
 
-    <logger name="ru.javawebinar.topjava" level="debug"/>
+    <logger name="es.ahs.mealscounter" level="debug"/>
 
     <!--log hibernate showSql-->
     <logger name="org.hibernate.SQL" level="debug"/>
