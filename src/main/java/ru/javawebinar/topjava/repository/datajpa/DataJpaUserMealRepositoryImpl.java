@@ -10,8 +10,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * GKislin
- * 27.03.2015.
+ * Andrey Kuznetsov
+ * 27.03.2016.
  */
 @Repository
 public class DataJpaUserMealRepositoryImpl implements UserMealRepository {

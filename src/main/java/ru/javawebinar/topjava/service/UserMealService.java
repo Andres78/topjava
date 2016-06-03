@@ -9,8 +9,8 @@ import java.time.LocalTime;
 import java.util.Collection;
 
 /**
- * GKislin
- * 15.06.2015.
+ * Andrey Kuznetsov
+ * 15.06.2016.
  */
 public interface UserMealService {
     UserMeal get(int id, int userId) throws NotFoundException;

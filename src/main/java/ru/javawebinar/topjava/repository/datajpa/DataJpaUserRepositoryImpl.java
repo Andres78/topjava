@@ -9,8 +9,8 @@ import ru.javawebinar.topjava.repository.UserRepository;
 import java.util.List;
 
 /**
- * GKislin
- * 27.03.2015.
+ * Andrey Kuznetsov
+ * 27.03.2016.
  */
 
 @Repository

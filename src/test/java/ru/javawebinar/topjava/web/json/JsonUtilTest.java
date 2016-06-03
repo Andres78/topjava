@@ -7,8 +7,8 @@ import ru.javawebinar.topjava.model.UserMeal;
 import java.util.List;
 
 /**
- * GKislin
- * 22.07.2015.
+ * Andrey Kuznetsov
+ * 22.07.2016.
  */
 public class JsonUtilTest {
 

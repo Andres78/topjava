@@ -15,8 +15,8 @@ import java.time.LocalTime;
 import java.util.List;
 
 /**
- * GKislin
- * 06.03.2015.
+ * Andrey Kuznetsov
+ * 06.03.2016.
  */
 public abstract class AbstractUserMealController {
     private static final Logger LOG = LoggerFactory.getLogger(AbstractUserMealController.class);

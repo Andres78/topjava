@@ -9,8 +9,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 /**
- * GKislin
- * 15.04.2015.
+ * Andrey Kuznetsov
+ * 15.04.2016.
  */
 public class LocalTimeFormatter implements Formatter<LocalTime> {
 

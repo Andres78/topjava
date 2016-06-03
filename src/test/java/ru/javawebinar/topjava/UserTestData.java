@@ -12,8 +12,8 @@ import java.util.Set;
 import static ru.javawebinar.topjava.model.BaseEntity.START_SEQ;
 
 /**
- * GKislin
- * 24.09.2015.
+ * Andrey Kuznetsov
+ * 24.09.2016.
  */
 public class UserTestData {
     public static final int USER_ID = START_SEQ;

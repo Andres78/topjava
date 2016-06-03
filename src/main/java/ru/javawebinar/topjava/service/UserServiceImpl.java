@@ -19,8 +19,8 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * GKislin
- * 06.03.2015.
+ * Andrey Kuznetsov
+ * 06.03.2016.
  */
 @Service("userService")
 public class UserServiceImpl implements UserService, UserDetailsService {

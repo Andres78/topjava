@@ -19,8 +19,8 @@ import java.util.List;
 import static ru.javawebinar.topjava.util.UserMealsUtil.createFromTo;
 
 /**
- * GKislin
- * 06.03.2015.
+ * Andrey Kuznetsov
+ * 06.03.2016.
  */
 @RestController
 @RequestMapping(value = "/ajax/profile/meals")

@@ -19,8 +19,8 @@ import static ru.javawebinar.topjava.UserTestData.ADMIN;
 import static ru.javawebinar.topjava.UserTestData.USER;
 
 /**
- * GKislin
- * 13.03.2015.
+ * Andrey Kuznetsov
+ * 13.03.2016.
  */
 @ContextConfiguration({"classpath:spring/spring-app.xml", "classpath:spring/spring-mvc.xml", "classpath:spring/mock.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)

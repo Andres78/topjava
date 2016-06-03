@@ -11,8 +11,8 @@ import ru.javawebinar.topjava.to.UserTo;
 import ru.javawebinar.topjava.web.ExceptionInfoHandler;
 
 /**
- * GKislin
- * 06.03.2015.
+ * Andrey Kuznetsov
+ * 06.03.2016.
  */
 @RestController
 @RequestMapping(ProfileRestController.REST_URL)

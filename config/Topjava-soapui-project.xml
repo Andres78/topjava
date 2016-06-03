@@ -445,7 +445,7 @@
                     </con:settings>
                     <con:endpoint>http://localhost:8080</con:endpoint>
                     <con:request>{
-                        "dateTime": "2015-06-01 10:00",
+                        "dateTime": "2016-06-01 10:00",
                         "description": "Новый завтрак",
                         "calories": 777
                         }
@@ -528,7 +528,7 @@
                     <con:endpoint>http://localhost:8080</con:endpoint>
                     <con:request>{
                         "id": 100002,
-                        "dateTime": "2015-05-30 10:00",
+                        "dateTime": "2016-05-30 10:00",
                         "description": "Обновленный завтрак",
                         "calories": 500
                         }
@@ -585,8 +585,8 @@
                     <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
                     <con:jmsPropertyConfig/>
                     <con:parameters>
-                        <con:entry key="startDateTime" value="2015-05-30T07:00"/>
-                        <con:entry key="endDateTime" value="2015-05-31T11:00:00"/>
+                        <con:entry key="startDateTime" value="2016-05-30T07:00"/>
+                        <con:entry key="endDateTime" value="2016-05-31T11:00:00"/>
                     </con:parameters>
                     <con:parameterOrder>
                         <con:entry>startDateTime</con:entry>
@@ -629,7 +629,7 @@
                     <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
                     <con:jmsPropertyConfig/>
                     <con:parameters>
-                        <entry key="2015-05-31" value="2015-05-31" xmlns="http://eviware.com/soapui/config"/>
+                        <entry key="2016-05-31" value="2016-05-31" xmlns="http://eviware.com/soapui/config"/>
                     </con:parameters>
                     <con:parameterOrder>
                         <con:entry>startDate</con:entry>

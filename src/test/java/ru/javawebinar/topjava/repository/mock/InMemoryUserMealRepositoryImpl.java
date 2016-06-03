@@ -18,8 +18,8 @@ import static ru.javawebinar.topjava.UserTestData.ADMIN_ID;
 import static ru.javawebinar.topjava.UserTestData.USER_ID;
 
 /**
- * GKislin
- * 15.09.2015.
+ * Andrey Kuznetsov
+ * 15.09.2016.
  */
 @Repository
 public class InMemoryUserMealRepositoryImpl implements UserMealRepository {
@@ -33,8 +33,8 @@ public class InMemoryUserMealRepositoryImpl implements UserMealRepository {
     {
         UserMealsUtil.MEAL_LIST.forEach(um -> save(um, USER_ID));
 
-        save(new UserMeal(LocalDateTime.of(2015, Month.JUNE, 1, 14, 0), "Админ ланч", 510), ADMIN_ID);
-        save(new UserMeal(LocalDateTime.of(2015, Month.JUNE, 1, 21, 0), "Админ ужин", 1500), ADMIN_ID);
+        save(new UserMeal(LocalDateTime.of(2016, Month.JUNE, 1, 14, 0), "Админ ланч", 510), ADMIN_ID);
+        save(new UserMeal(LocalDateTime.of(2016, Month.JUNE, 1, 21, 0), "Админ ужин", 1500), ADMIN_ID);
     }
 
     @Override

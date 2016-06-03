@@ -11,8 +11,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static ru.javawebinar.topjava.UserTestData.USER;
 
 /**
- * GKislin
- * 10.04.2015.
+ * Andrey Kuznetsov
+ * 10.04.2016.
  */
 public class RootControllerTest extends AbstractControllerTest {
 

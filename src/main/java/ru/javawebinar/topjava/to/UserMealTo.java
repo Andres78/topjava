@@ -8,8 +8,8 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 /**
- * GKislin
- * 11.01.2015.
+ * Andrey Kuznetsov
+ * 11.01.2016.
  */
 public class UserMealTo {
     private int id;

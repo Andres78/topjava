@@ -11,8 +11,8 @@ import java.net.URI;
 import java.util.List;
 
 /**
- * GKislin
- * 06.03.2015.
+ * Andrey Kuznetsov
+ * 06.03.2016.
  */
 @RestController
 @RequestMapping(AdminRestController.REST_URL)
